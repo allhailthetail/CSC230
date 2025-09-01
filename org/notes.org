@@ -1,0 +1,40 @@
+#+title: Class Notes
+#+startup: indent overview hideblocks entitiespretty
+
+* Using Git
+
+- [[https://gitbookdown.dallasdatascience.com/branching-git-branch.html][Using Branches with Git]]
+
+- Caveats to creating a new branch, which branch you decide to start at matters, also:
+   ~main~ - This will branch off your local branch on the machine itself
+   ~HEAD~ - This is the current commit your working directory is pointing to /pointer to current branch/
+   origin/main - the *main* branch on the remote repository (GitHub/GitLab/etc).
+
+   Understanding which you're using is important, because you may have local changes you haven't synced to GitHub yet, etc.
+
+- Something else
+
+* Submission Conventions
+
+#+begin_quote
+Rize Submission Standards:
+
+APA - Times New Roman/Calibri 12pt double-spaced.
+Set link to anyone with link...
+
+---
+
+Filename:
+
+! Specific directions may override !
+
+Last name and First Initial
+Unit #
+Name of Assignment
+Date
+
+i.e.
+YoungerM_Unitxx_AssignmentName_mmddyyyy.ext
+
+---
+#+end_quote
