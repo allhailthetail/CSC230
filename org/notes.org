@@ -14,7 +14,13 @@
 
 - Something else
 
+* Useful Tools for Web Development:
+
+- [[https://alttext.ai/][AI-powered alt-text generator.]]
+
 * Submission Conventions
+
+It's important to submit files correctly so the instructor can keep straight each student's work.
 
 #+begin_quote
 Rize Submission Standards:
@@ -37,4 +43,25 @@ i.e.
 YoungerM_Unitxx_AssignmentName_mmddyyyy.ext
 
 ---
+#+end_quote
+
+* Week 3
+
+Goal: Create your first webpage using VSCode and Liveserver extension.
+
+** Importance of semantic HTML:
+#+begin_quote
+When implementing HTML, it’s important to structure content using semantic HTML for a few important reasons:
+
+    Accessibility: Screen readers use semantic tags to give users context (e.g., “Main content begins,” “Navigation menu,” etc.)
+    SEO: Search engines prioritize structured content. Using <header>, <article>, and <section> helps bots understand your site’s hierarchy.
+    Maintainability: It’s easier for other developers (or future you) to understand your page structure.
+
+Let’s implement semantic HTML into our music page by refactoring the index.html page so that it uses a:
+
+    <header> for the page title and intro
+    <main> for content like lists or album write-ups
+    <article> to group artist information
+    <section> to break up main content
+    <nav> for navigation or site info
 #+end_quote
