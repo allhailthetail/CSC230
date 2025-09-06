@@ -119,7 +119,7 @@ A class can be any name, just no spaces (use dashes)
 Conversely, we can assign *unique* ideas to one and only one HTML element.
 
 For example:
-#+begin_example
+#+begin_example html
 <p id="uniqueParagraph">Hello, World!</p>
 
 <p id="uniqueParagraph-1">=Goodbye, World.</p>
