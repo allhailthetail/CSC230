@@ -45,7 +45,7 @@ YoungerM_Unitxx_AssignmentName_mmddyyyy.ext
 ---
 #+end_quote
 
-* Week 3
+* Week 3 - Basic HTML
 
 Goal: Create your first webpage using VSCode and Liveserver extension.
 
@@ -65,3 +65,86 @@ Let’s implement semantic HTML into our music page by refactoring the index.htm
     <section> to break up main content
     <nav> for navigation or site info
 #+end_quote
+
+* Week 4 - CSS Fundamentals
+
+Goal: CSS transforms raw HTML into an inviting, usable website. *CSS styles the documents and describes how elements should be displayed.*
+HTML is the foundation of the house, CSS is the wallpaper and decorations.
+
+~<link>~ connects the CSS file to the HTML file. ~separation of concerns~ <-- Goes inside of ~<head>~ tag...
+
+NOTE: this tag is odd, it's unbalanced, first instance is the ending tag with a "/"
+#+begin_example html
+    <link rel="stylesheet" href="./css/style.css" />
+#+end_example
+
+- [[https://www.w3schools.com/cssref/index.php][Complete CSS Reference]]
+- [[https://makeschool.org/mediabook/oa/tracks/web-dev-with-node/your-first-website--landing-page/stylin-with-css/][CSS tutorial step-by-step]]
+
+NOTE: for CSS, order of the rules matters also! Whatever is defined first (top-down) can be overridden by
+a later definition in the .css file, so rules towards the end matter and how the file is organized matters...
+
+** CSS Rulesets
+- Two components:
+  *selector* <-- Select the HTML element to style
+  *property* <-- {property, value}
+
+** CSS Selectors
+- [[https://www.w3schools.com/cssref/css_selectors.php][CSS Selectors Reference]]
+
+  selector - /header/
+  property - /background-color/
+  value - mistyrose
+
+  Each selector has a scope {}
+  Each declaration has a ;
+
+  property : value format
+  #+begin_example css
+  header {
+    background-color: mistyrose;
+    text-align: center;
+  }
+  #+end_example
+
+** CSS Classes
+We can be much more specific on how we apply CSS to our page, i.e. more granular.
+
+A class can be any name, just no spaces (use dashes)
+~.my-class~ for example.
+
+*NOTE:* Classes are one to many. Many HTML elements may be assigned to a single CSS class.
+
+** CSS IDs:
+Conversely, we can assign *unique* ideas to one and only one HTML element.
+
+For example:
+#+begin_example
+<p id="uniqueParagraph">Hello, World!</p>
+
+<p id="uniqueParagraph-1">=Goodbye, World.</p>
+#+end_example
+
+#+begin_example css
+#uniqueParagraph {
+  color: blue;
+}
+
+#uniqueParagraph-1 {
+  color: red;
+}
+#+end_example
+
+** CSS Flexboxes
+- [[https://css-tricks.com/snippets/css/a-guide-to-flexbox/][Flexbox Layout Guide]]
+
+- Raw HTML has issues:
+  1. Some elements may be clustered very tightly
+  2. Pictures may need to be arranged differently
+  3. The footer needs to look better, more simplified?
+
+- "Man cannot live on ~<br>~ alone..."
+
+- *Two Components:*
+  1. Flex container controls layoiut using display: in CSS.
+  2. Flex item is a child element /of/ the container. Laid out in row/column automatically
