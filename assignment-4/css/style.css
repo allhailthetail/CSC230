@@ -23,6 +23,13 @@ h1 {
   font-size: 60px;
 }
 
+.h1-homepage-subhead {
+  color: #035C3A;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  font-size: 50px;
+}
+
 h2 {
   font-style: italic;
   font-size: 30px;
@@ -47,9 +54,8 @@ ol {
 
 .h-container {
   display: flex;
-  flex-flow: row nowrap;
+  flex-direction: row;
   gap: 1rem;
-  align-items: flex-start;
   margin: 2rem;
 }
 
@@ -87,8 +93,8 @@ ol {
 }
 
 footer {
-  background-color: #f2f2f2;
-  border-top: 4px solid #035c3a;
+  background-color: #ffffcc;
+  border-top: 6px solid #035c3a;
   padding: 0.5rem 0;
   text-align: center;
 }
@@ -103,4 +109,63 @@ footer {
 
 #footer ul li a:hover {
   color: #2596be;
+}
+
+/*
+   Media Query config for Phones
+   Galaxy S8+ is narrowest, 360px portrait,
+   iPhone 14 Pro Max widest 932px landscape
+*/
+@media (min-width: 320px) and (max-width: 915px) {
+  .h-container{
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+  }
+  .v-container{
+    align-items: center;
+  }
+  .h-box, .v-box {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  h2 {
+    font-size: 23px;
+  }
+  h3 {
+    font-size: 21px;
+  }
+  .h1-homepage {
+    font-size: 25px;
+  }
+  .h1-homepage-subhead {
+    font-size: 20px;
+  }
+}
+
+/* Media Query config for Tablets */
+@media (max-width: 1023px) {
+  .h-container {
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  .h-box {
+    width: 100%;
+  }
+  h2 {
+    font-size: 18px;
+  }
+  h3 {
+    font-size: 16px;
+  }
+  .h1-homepage {
+    font-size: 20px;
+  }
+  .h1-homepage-subhead {
+    font-size: 15px;
+  }
 }
