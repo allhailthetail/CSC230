@@ -6,17 +6,23 @@
 - [[https://gitbookdown.dallasdatascience.com/branching-git-branch.html][Using Branches with Git]]
 
 - Caveats to creating a new branch, which branch you decide to start at matters, also:
-   ~main~ - This will branch off your local branch on the machine itself
-   ~HEAD~ - This is the current commit your working directory is pointing to /pointer to current branch/
-   origin/main - the *main* branch on the remote repository (GitHub/GitLab/etc).
+  ~main~ - This will branch off your local branch on the machine itself
+  ~HEAD~ - This is the current commit your working directory is pointing to /pointer to current branch/
+  origin/main - the *main* branch on the remote repository (GitHub/GitLab/etc).
 
-   Understanding which you're using is important, because you may have local changes you haven't synced to GitHub yet, etc.
+  Understanding which you're using is important, because you may have local changes you haven't synced to GitHub yet, etc.
 
 - Something else
 
 * Useful Tools for Web Development:
 
 - [[https://alttext.ai/][AI-powered alt-text generator.]]
+- [[https://www.w3schools.com/cssref/index.php][Complete CSS Reference]]
+- [[https://makeschool.org/mediabook/oa/tracks/web-dev-with-node/your-first-website--landing-page/stylin-with-css/][CSS tutorial step-by-step]]
+- [[https://www.w3schools.com/css/css3_flexbox.asp][W3 Schools Flexboxes]]
+- [[https://www.w3schools.com/cssref/css_selectors.php][CSS Selectors Reference]]
+- [[https://css-tricks.com/snippets/css/a-guide-to-flexbox/][Flexbox Layout Guide]]
+- [[https://webaim.org/resources/contrastchecker/][WebAim Contrast Checker]]
 
 * Submission Conventions
 
@@ -53,17 +59,17 @@ Goal: Create your first webpage using VSCode and Liveserver extension.
 #+begin_quote
 When implementing HTML, it’s important to structure content using semantic HTML for a few important reasons:
 
-    Accessibility: Screen readers use semantic tags to give users context (e.g., “Main content begins,” “Navigation menu,” etc.)
-    SEO: Search engines prioritize structured content. Using <header>, <article>, and <section> helps bots understand your site’s hierarchy.
-    Maintainability: It’s easier for other developers (or future you) to understand your page structure.
+Accessibility: Screen readers use semantic tags to give users context (e.g., “Main content begins,” “Navigation menu,” etc.)
+SEO: Search engines prioritize structured content. Using <header>, <article>, and <section> helps bots understand your site’s hierarchy.
+Maintainability: It’s easier for other developers (or future you) to understand your page structure.
 
 Let’s implement semantic HTML into our music page by refactoring the index.html page so that it uses a:
 
-    <header> for the page title and intro
-    <main> for content like lists or album write-ups
-    <article> to group artist information
-    <section> to break up main content
-    <nav> for navigation or site info
+<header> for the page title and intro
+<main> for content like lists or album write-ups
+<article> to group artist information
+<section> to break up main content
+<nav> for navigation or site info
 #+end_quote
 
 * Week 4 - CSS Fundamentals
@@ -148,3 +154,98 @@ For example:
 - *Two Components:*
   1. Flex container controls layoiut using display: in CSS.
   2. Flex item is a child element /of/ the container. Laid out in row/column automatically
+
+* Week 5 - Usability and Accessibility
+
+** Accessible Design
+- Can someone using a screen reader understand your layout?
+- Can someone with low vision read your text?
+- Can someone using only a keyboard navigate your page?
+- Someone using a screen reader because they are blind
+- Someone who can’t use a mouse and navigates by keyboard
+- Someone on a mobile device with a small screen
+- Someone with colorblindness who can’t distinguish red from green
+- Someone with cognitive disabilities who needs a clear structure
+-
+** Implementing Accessibility
+- Using heading tags in order
+  #+begin_example html
+  <h1>My Music Page</h1>
+  <h2>Featured Artist: Beyoncé</h2>
+  <h3>Top Songs</h3>
+  #+end_example
+- Adding descriptive alt text to all images
+- Checking color contrast
+  [[https://webaim.org/resources/contrastchecker/][WebAim Contrast Checker]]
+- Using descriptive link text
+  #+begin_example html
+  <!-- Good -->
+  <a href="https://www.beyonce.com/">Learn more about Beyoncé</a>
+
+  <!-- Bad -->
+  <a href="https://www.beyonce.com/">Click here</a>
+  #+end_example
+- Add landmarks with semantic tags
+  #+begin_example html
+  <body>
+  <header><h1>My Music Page</h1></header>
+  <main>
+    <section>
+      <h2>Featured Artist</h2>
+      <p>Beyoncé is an American singer...</p>
+    </section>
+  </main>
+  <footer>
+    <a href="page2.html">Go to Page 2</a>
+  </footer>
+</body>
+  #+end_example
+
+** Media Queries
+- [[https://www.csschopper.com/blog/mobile-vs-desktop-website-make-right-decision/][Media Queries]]
+  Selectively apply styles based on screen size
+  #+begin_example css
+  @media (max-width: 600px) {
+    body {
+      font-size: 16px;
+    }
+  }
+  #+end_example
+
+  - These also work with flexboxes:
+    #+begin_src html
+    <html>
+      <head>
+        <style>
+          .flex-container {
+            display: flex;
+            flex-wrap: nowrap;
+            background-color: DodgerBlue;
+          }
+
+          .flex-container > div {
+            background-color: #f1f1f1;
+            width: 100px;
+            margin: 10px;
+            text-align: center;
+            line-height: 75px;
+            font-size: 30px;
+          }
+
+          @media (max-width: 600px) {
+            .flex-container {
+              flex-direction: column;
+              align-items: center;
+            }
+          }
+
+        </style>
+      </head>
+      <body>
+        ...
+      </body>
+    </html>
+    #+end_src
+** Auditing for Accessibility
+- [[https://developer.chrome.com/docs/lighthouse/][Lighthouse - Chrome Add-On]]
+- [[https://wave.webaim.org/extension/][WAVE Web Accessibility Evaluation Tool]]
