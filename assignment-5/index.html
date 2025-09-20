@@ -19,21 +19,21 @@
 
     <body>
         <!--- Begin main container --->
-        <div class="container">
+        <div class="container py-5">
 
-            <header>
-                <h1 class="display-5">History of Computer Science</h1>
-                <h1 class="lead mb-0">Perhaps not what you thought?</h1>
+            <header class ="mb-5 text-center">
+                <h1 class="display-4 fw-bold mb-2">History of Computer Science</h1>
+                <h2 class="text-muted">Perhaps not what you thought?</h2>
             </header>
 
             <main>
                 <!-- Row 1 -->
-                <div class ="row g-4">
+                <div class ="row g-5 align-items-start">
                     <!-- Overview is a h-box child #1 of container -->
                     <div  class="col-md-6">
                         <section>
-                            <h2 class="h4">Overview:</h2>
-                            <p>
+                            <h2 class="h4 mb-3">Overview:</h2>
+                            <p class="lead mb-3">
                                 &emsp; What image do these two words conjure in your mind: "computer" and "history"?
                                 Perhaps if you're like me, you think back to your family's first <i>Hewlett-Packard</i>
                                 Personal Computer. A clunky, heavy, slow, noisy machine - but nonetheless state-of-the-art for its time?
@@ -60,7 +60,7 @@
                             </p>
 
                             <p>
-                                Another thread in this history is accessibility. Once, computers filled rooms and required teams to operate. Then they fit on desks,
+                                &emsp; Another thread in this history is accessibility. Once, computers filled rooms and required teams to operate. Then they fit on desks,
                                 then in laps, and now in pockets and on wrists. Each downsizing forced new thinking about interfaces, energy, networking, and security.
                                 Constraints, far from limiting progress, became catalysts for creativity.
                             </p>
@@ -68,13 +68,16 @@
                     </div>
                     <div class="col-md-6">
                         <!-- The First Computer is a h-box child #2 of container -->
-                        <section class="col-md-6">
+                        <section>
                             <!--Explain history of early computing in a few paragraphs-->
-                            <h2>The First Computer:</h2>
+                            <h2 class="h4 mb-3">The First Computer:</h2>
 
-                            <img src="img/abacus.png"
-                                 alt="A traditional abacus with rods and beads, displaying the numbers 1 3 5 2 9 6 4 7 0 8 below it." width="50%">
-                            <p>
+                            <img class="img-fluid rounded shadow-sm mb-3"
+                                 src="img/abacus.png"
+                                 alt="A traditional abacus with rods and beads, displaying the numbers 1 3 5 2 9 6 4 7 0 8 below it."
+                                 width="50%"
+                            />
+                            <p class="mb-3">
                                 &emsp; The "classical" definition of computer is: an information machine, a data processor, a problem solver,
                                 an automation tool. For thousands of years, humans have been in search of tools to make difficult work easier.
                                 It's no secret that humans are generally bad at math, which is indeed one of the first instances we see where a "computer"
@@ -92,45 +95,49 @@
                             </p>
 
                             <!--Ordered list-->
-                            <ol>
-                                <li>Enhanced calculation abilities - multiplication, accurate handling of large sums.</li>
-                                <li>Mathematical bases - If the abacus has 10 beads, I've suddenly invented "base 10" arithmetic.</li>
-                                <li>Algorithmic thinking - I can follow a process, moving the beads along as I follow a process</li>
-                                <li>Debugging - I can retrace my steps more easily</li>
-                                <li>Innovation - I can be inspired to design a better abacus</li>
+                            <ol class="mb-4">
+                                <li class="mb-1">Enhanced calculation abilities - multiplication, accurate handling of large sums.</li>
+                                <li class="mb-1">Mathematical bases - If the abacus has 10 beads, I've suddenly invented "base 10" arithmetic.</li>
+                                <li class="mb-1">Algorithmic thinking - I can follow a process, moving the beads along as I follow a process</li>
+                                <li class="mb-1">Debugging - I can retrace my steps more easily</li>
+                                <li class="mb-1">Innovation - I can be inspired to design a better abacus</li>
                             </ol>
                         </section>
                     </div>
                 </div>
 
                 <!--- Row 2 Begins --->
-                <div class="row g-4 mt-1">
+                <div class="row g-5 mt-5 align-items-center">
                     <div class="col-md-6">
                         <!-- New section to explain the adder...-->
                         <section>
                             <!-- Color can also be specified this way, which might be better for one-off uses... -->
-                            <h2 style="color:#4000ff">Full Adder Animation:</h2>
-                            <img src="img/full_adder.gif" alt="An animation of a full adder circuit for educational purposes.">
+                            <h2 class="h4 text-primary mb-3" style="color:#4000ff">Full Adder Animation:</h2>
+                            <img class="img-fluid rounded shadow-sm mb-3"
+                                 src="img/full_adder.gif"
+                                 alt="An animation of a full adder circuit for educational purposes."
+                            />
                         </section>
-                        <section">
-                            <p>
+                        <div class="col-md-6">
+                            <p class="mb-0">
                                 &emsp; If you explore modern computing, you'll find that entire CPU processors can be decomposed to series ofgates and latches which hold electrical charges
                                 representing zeros and ones. Hence, this is in fact a <b>binary</b> arithmetic system. Essentially, rows of beads have been replaced by silicon and electricity,
                                 but the basic idea still bears resemblance to the humble abacus. Below I show a very simple adder circuit, complete with animations to represent the beads,
                                 just to drive the point home.
                             </p>
-                        </section>
+                        </div>
                     </div>
                 </div>
             </main>
-            <footer class="mt-4">
+
+            <footer class="mt-5 pt-4 border-top">
                 <!--Links to examples of early computers...-->
-                <nav id="footer">
-                    <ul class="list-inline">
-                        <li class="list-inline-item"><a href="page2.html">More Photos - Pg 2</a></li>
-                        <li class="list-inline-item"><a href="https://en.wikipedia.org/wiki/Antikythera_mechanism">Antithykera Mechanism</a></li>
-                        <li class="list-inline-item"><a href="https://en.wikipedia.org/wiki/Tide-predicting_machine">Tide Machine</a></li>
-                        <li class="list-inline-item"><a href="https://en.wikipedia.org/wiki/Analytical_engine">Analytical Engine</a></li>
+                <nav class="text-center">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item px-2"><a href="page2.html">More Photos - Pg 2</a></li>
+                        <li class="list-inline-item px-2"><a href="https://en.wikipedia.org/wiki/Antikythera_mechanism">Antithykera Mechanism</a></li>
+                        <li class="list-inline-item px-2"><a href="https://en.wikipedia.org/wiki/Tide-predicting_machine">Tide Machine</a></li>
+                        <li class="list-inline-item px-2"><a href="https://en.wikipedia.org/wiki/Analytical_engine">Analytical Engine</a></li>
                     </ul>
                 </nav>
             </footer>
