@@ -24,6 +24,20 @@
 - [[https://css-tricks.com/snippets/css/a-guide-to-flexbox/][Flexbox Layout Guide]]
 - [[https://webaim.org/resources/contrastchecker/][WebAim Contrast Checker]]
 
+* Effective Web Design:
+** Desirables
+1. user-centric
+2. Responsive
+3. Aesthetically Pleasing
+4. Call-to-action
+5. Responsive page, fast load
+
+** Undesirables
+1. Interface overload
+2. Distractions
+3. Distracting color/typography
+4. Bad search engine optimization SEO
+
 * Submission Conventions
 
 It's important to submit files correctly so the instructor can keep straight each student's work.
@@ -249,3 +263,37 @@ For example:
 ** Auditing for Accessibility
 - [[https://developer.chrome.com/docs/lighthouse/][Lighthouse - Chrome Add-On]]
 - [[https://wave.webaim.org/extension/][WAVE Web Accessibility Evaluation Tool]]
+
+* Week 6 - CSS Libraries
+** CSS Libs
+Building a professional website from scratch is a LOT of work.
+  1. Grid layouts that work on desktop AND mobile
+  2. Styled buttons
+  3. Forms that work...
+
+Rather than re-inventing the wheel, you can use existing tools:
+  1. [[https://getbootstrap.com/][Bootstrap]]
+  2. [[https://tailwindcss.com/][Tailwind]]
+  3. [[https://bulma.io/][Bulma]]
+     1. [[https://2022.stateofcss.com/en-US/css-frameworks/][Stats on these frameworks]]
+
+
+** Adding Botstrap
+- [[https://designmodo.com/migrate-bootstrap-5/][Adding bootstrap to a project]]
+- [[https://getbootstrap.com/docs/5.3/getting-started/introduction/][Official Bootstrap Docs]]
+
+Example:
+#+begin_example html
+<head>
+  <title>My Music Page</title>
+
+  <!-- Link to Bootstrap, MUST come before your style.css -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- Link to Your Custom Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+#+end_example
+
+** Using Bootstrap Classes
+** Bootstrap Docs
