@@ -11,20 +11,34 @@ body {
 
 main p {
   max-width: 70ch;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #333;
+  max-width: 70ch;
+  margin-bottom: 1.25rem;
 }
 
 ol {
   color: #335c57;
 }
 
+/* I like green for the main page's title. Keeping this.*/
 .h1-homepage {
   color: #035c3a;
   font-family: "Courier New", monospace;
 }
-
+Photo Gallery:
 .h1-homepage-subhead {
   color: #035c3a;
   font-family: "Courier New", monospace;
+}
+
+/* Fixes the gallery images so they're consistent */
+.figure-img {
+  width:  600px;
+  height: 400px;
+  object-fit: cover;
+  object-position: center;
 }
 
 /* Section headings */
