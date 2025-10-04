@@ -297,3 +297,21 @@ Example:
 
 ** Using Bootstrap Classes
 ** Bootstrap Docs
+* Week 8 - Intro to JavaScript
+- [[https://github.com/allhailthetail/csc230-taste-tracker][Link to Repo with Submitted Content]]
+
+- [[https://medium.com/swlh/introduction-to-javascript-basics-cf901c05ca47][Medium - Intro to JS]]
+
+- W3S links:
+  - [[https://www.w3schools.com/js/js_variables.asp][JS Variables]]
+  - [[https://www.w3schools.com/js/js_datatypes.asp][JS Data Types]]
+  - [[https://www.w3schools.com/js/js_functions.asp][JS Functions]]
+  - [[https://www.w3schools.com/jsref/jsref_obj_array.asp][JS Arrays]]
+  - [[https://www.w3schools.com/js/js_if_else.asp][JS If Else]]
+  - [[https://www.w3schools.com/js/js_loop_for.asp][JS Loops]]
+
+- You do need to let your HTML page know about your .js file:
+  #+begin_example html
+  <!-- Inside your HTML file -->
+  <script src="script.js"></script>
+  #+end_example
