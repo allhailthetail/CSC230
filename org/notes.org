@@ -232,25 +232,25 @@ For example:
       <head>
         <style>
           .flex-container {
-            display: flex;
-            flex-wrap: nowrap;
-            background-color: DodgerBlue;
+          display: flex;
+          flex-wrap: nowrap;
+          background-color: DodgerBlue;
           }
 
           .flex-container > div {
-            background-color: #f1f1f1;
-            width: 100px;
-            margin: 10px;
-            text-align: center;
-            line-height: 75px;
-            font-size: 30px;
+          background-color: #f1f1f1;
+          width: 100px;
+          margin: 10px;
+          text-align: center;
+          line-height: 75px;
+          font-size: 30px;
           }
 
           @media (max-width: 600px) {
-            .flex-container {
-              flex-direction: column;
-              align-items: center;
-            }
+          .flex-container {
+          flex-direction: column;
+          align-items: center;
+          }
           }
 
         </style>
@@ -267,15 +267,15 @@ For example:
 * Week 6 - CSS Libraries
 ** CSS Libs
 Building a professional website from scratch is a LOT of work.
-  1. Grid layouts that work on desktop AND mobile
-  2. Styled buttons
-  3. Forms that work...
+1. Grid layouts that work on desktop AND mobile
+2. Styled buttons
+3. Forms that work...
 
 Rather than re-inventing the wheel, you can use existing tools:
-  1. [[https://getbootstrap.com/][Bootstrap]]
-  2. [[https://tailwindcss.com/][Tailwind]]
-  3. [[https://bulma.io/][Bulma]]
-     1. [[https://2022.stateofcss.com/en-US/css-frameworks/][Stats on these frameworks]]
+1. [[https://getbootstrap.com/][Bootstrap]]
+2. [[https://tailwindcss.com/][Tailwind]]
+3. [[https://bulma.io/][Bulma]]
+   1. [[https://2022.stateofcss.com/en-US/css-frameworks/][Stats on these frameworks]]
 
 
 ** Adding Botstrap
@@ -314,4 +314,252 @@ Example:
   #+begin_example html
   <!-- Inside your HTML file -->
   <script src="script.js"></script>
+  #+end_example
+
+* Week 9 - DOM & JavaScript Events
+** Resource Links
+- [[https://www.w3schools.com/jsref/met_document_getelementbyid.asp][getElementById()]]
+- [[https://www.w3schools.com/jsref/dom_obj_event.asp][DOM Events Reference Page]]
+- [[https://www.w3schools.com/js/js_htmldom_eventlistener.asp][addEventListener() JS Method]]
+- [[https://www.w3schools.com/jsref/met_document_queryselectorall.asp][querySelectorAll() method]]
+- [[https://www.w3schools.com/jsref/jsref_foreach.asp][forEach() JS method]]
+- [[https://www.w3schools.com/tags/att_data-.asp][data-* HTML attribute]]
+
+** DOM DOM DOM DOOOOM - Understanding the DOM
+- The *Document Object Model* allows for the creation of interactive websites, by allowing JavaScript
+  to interact with the HTML on the page.
+  #+begin_example html
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title></title>
+    </head>
+    <body>
+      <h1 id = "header1">My first header</h1>
+      <h1 id = "header2">My second header</h1>
+    </body>
+  </html>
+  #+end_example
+
+  The result is a tree-based structure:
+  HTML -> {head: {title}, body: {h1},{h2}}
+  _Every_ tag is a node and can be accessed and changed by your JavaScript.
+
+- Selecting elements with JavaScript:
+  Say your HTML has the following structure
+  #+begin_example html
+  <!--It's critical you rememebr to load your .js script!!-->
+  <script src="./js/script.js"></script>
+
+  <h1 class="mb-3" id="page-title">Welcome to the Mood Tracker!</h1>
+  <p id="mood-instructions">Track how you're feeling today.</p>
+  #+end_example
+
+  - Your resulting JavaScript then would look like:
+    #+begin_example js :file script.js
+    let title = document.getElementById("page-title");
+    let instructions = document.getElementById("mood-instructions");
+    console.log(title);         // You should literally see the <title> tag in the
+    console.log(instructions);
+
+    // Now, say you wanted to change a value...
+    title.textContent = "How Are You Feeling Today?";
+    instructions.textContent = "Click a mood below to begin.";
+    #+end_example
+
+** Event-driven Programming
+- Common events you want to drive the site:
+  * clicks
+  * mouse movement
+  * key presses
+  * /resizing a window/
+
+*** Responding to button clicks:
+- For a simple scenario, name all your buttons with ~class~ in the HTML tags (i.e. /mood-buttons/)
+  Or, potentially just name an entire container /mood-buttons/?
+  #+begin_example html
+  <div class="mood-buttons col-6 col-md-3">
+    <button class="btn btn-outline-primary w-100">😊</button>
+    ...more buttons not shown
+  </div>
+  #+end_example
+
+  - Then, your Java script gets programmed as shown in this toy example:
+    #+begin_example js
+    // This should find all the buttons inside the <div> container named mood-buttons?
+    let buttons = document.querySelectorAll("#mood-buttons button");
+    console.log(buttons);
+
+    // Now, you could loop over each button and cause somethng to happen if the user
+    //   clicks a particular one...c
+    buttons.forEach(fuction(button){
+      // Code you want to run for each button
+      button.addEventListener("click", function() {
+        console.log("button clicked!");
+      })
+    })
+
+    // More interesting example: change HTML elements depending on choice...
+    let buttons = document.querySelectorAll("#mood-buttons button");
+
+    buttons.forEach(function(button){
+      button.addEventListener("click", function() {
+        let emoji = button.textContent;
+        let output = document.getElementById("output-message");
+        output.textContent = `You're feeling ${emoji} today!`;
+        // Similar to writing "You're feeeling " + emoji + " today!"
+      })
+    })
+    #+end_example
+
+- Or, a slightly more interesting example:
+  (Note that the code is using [[https://www.w3schools.com/js/js_string_templates.asp][JS string interpolation]].)
+  #+begin_example js
+  let buttons = document.querySelectorAll("#mood-buttons button");
+
+  buttons.forEach(function(button){
+    button.addEventListener("click", function() {
+      let emoji = button.textContent;
+      let output = document.getElementById("output-message");
+      output.textContent = `You're feeling ${emoji} today!`;
+      // Similar to writing "You're feeeling " + emoji + " today!"
+    })
+  })
+  #+end_example
+
+- Finally, where we're actually going with this:
+  #+begin_example js
+  let buttons = document.querySelectorAll("#mood-buttons button");
+
+  buttons.forEach(function(button){
+    button.addEventListener("click", function() {
+      // Remove the selected class from all button
+      buttons.forEach(function(btn) {
+        btn.classList.remove("selected");
+      });
+      // Add the selected class to only the one that is clicked
+      button.classList.add("selected");
+
+      // Code from previous step
+      let emoji = button.textContent;
+      let output = document.getElementById("output-message");
+      output.textContent = `You're feeling ${emoji} today!`;
+      // Similar to writing "You're feeeling " + emoji + " today!"
+
+    })
+  })
+  #+end_example
+
+** Data Attributes
+HINT: You're going to use these data attributes to track the _answers_ for later use...
+
+[[https://www.w3schools.com/tags/att_data-.asp][Data attributes]] allow developers to embed custom data attributes on ANY HTML element. This stored /custom/ data
+can be used by the page's JavaScript to improve the user experience, all  _without any additional burden server-side_!
+
+- Basic format: ~data-*~ where * can be any _lowercase_ character or character sequence, "string."
+  #+begin_example html
+  <!--Here, we see animal-type is encoded in each list item...-->
+  <ul>
+    <li data-animal-type="bird">Owl</li>
+    <li data-animal-type="fish">Salmon</li>
+    <li data-animal-type="spider">Tarantula</li>
+  </ul>
+  #+end_example
+
+- So, for example, you might add a ~data-mood~ data attribute to the mood tracker example:
+  #+begin_example html
+  <div id="mood-buttons" class="row g-2 my-3">
+    <div class="col-6 col-md-3">
+      <button class="btn btn-outline-primary w-100" data-mood="happy">😊</button>
+    </div>
+    <div class="col-6 col-md-3">
+      <button class="btn btn-outline-primary w-100" data-mood="tired">😴</button>
+    </div>
+    <div class="col-6 col-md-3">
+      <button class="btn btn-outline-primary w-100" data-mood="angry">😠</button>
+    </div>
+    <div class="col-6 col-md-3">
+      <button class="btn btn-outline-primary w-100" data-mood="confused">😕</button>
+    </div>
+  </div>
+  #+end_example
+
+  - Subsequently, your JavaScript would look like:
+    #+begin_example js
+    let buttons = document.querySelectorAll("#mood-buttons button");
+
+    buttons.forEach(function(button) {
+      button.addEventListener("click", function() {
+        // Previous highlight button code
+        buttons.forEach(function(btn) {
+          btn.classList.remove("selected");
+        });
+        button.classList.add("selected");
+
+
+        let mood = button.getAttribute("data-mood");
+        let output = document.getElementById("output-message");
+
+        // Now we can write different responses based on the mood
+        if (mood === "happy") {
+          output.textContent = "Yay! Glad you're feeling happy today 🎉";
+        } else if (mood === "tired") {
+          output.textContent = "Take it easy—you’ve earned some rest 😴";
+        } else if (mood === "angry") {
+          output.textContent = "Deep breaths. Tomorrow is a new day 😤";
+        } else if (mood === "confused") {
+          output.textContent = "Confusion is a sign of growth 🤔";
+        }
+      });
+    });
+    #+end_example
+*** Tracking and Storing Data
+- *This is a big deal, because it's allowing you to separate the logic from the presentation*
+
+- Oftentimes, it's desirable to track information for use later in the program.
+  To do this, you're storing things in an array... The general process:
+
+  1. Create an empty object to store user data
+  2. Get data using the dataset (JavaScript) attribute
+  3. Store/append the data to the object
+
+- One more example of the mood tracker:
+  #+begin_example html
+  <div id="mood-buttons" class="row g-2 my-3">
+    <div class="col-6 col-md-3">
+      <button class="btn btn-outline-primary w-100" data-buttonid = "1" data-mood="happy">😊</button>
+    </div>
+
+    <div class="col-6 col-md-3">
+      <button class="btn btn-outline-primary w-100" data-buttonid = "1" data-mood="tired">😴</button>
+    </div>
+
+    <div class="col-6 col-md-3">
+      <button class="btn btn-outline-primary w-100" data-buttonid = "1" data-mood="angry">😠</button>
+    </div>
+
+    <div class="col-6 col-md-3">
+      <button class="btn btn-outline-primary w-100" data-buttonid = "1" data-mood="confused">😕</button>
+    </div>
+  </div>
+  #+end_example
+
+  #+begin_example js
+  let buttons = document.querySelectorAll("#mood-buttons button");
+  // 1. Create an empty object that will store user data
+  let userAnswers = {}
+  buttons.forEach(function(button) {
+    button.addEventListener("click", function() {
+      // Highlight button code not shown
+
+      // 2. Get the data using the dataset attribute
+      let buttonID = button.dataset.buttonid;
+      let response = button.dataset.mood;
+      // 3. Store the data in the object
+      userAnswers[buttonID] = response;
+      console.log(userAnswers); // See current stored answers
+
+      // Mood implementaiton code now sown
+    });
+  });
   #+end_example
