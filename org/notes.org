@@ -563,3 +563,232 @@ can be used by the page's JavaScript to improve the user experience, all  _witho
     });
   });
   #+end_example
+
+* Week 10 - APIs
+** General API Info
+- HTTP Verbs
+  The following are the typical types of HTML operations we're concerned with
+  when working with APIs:
+
+  |--------+-------------------------------|
+  | GET    | Retrieving data from a server |
+  | POST   | sending data to the server    |
+  | PUT    | Modifying data on the server  |
+  | DELETE | Deleting data on the server   |
+  |--------+-------------------------------|
+
+- JSON format:
+  This is usually what's returned by the APIs:
+  #+begin_example json
+  {
+  "status_code": 200,
+  "weather": [
+    {
+      "id": 800,
+      "main": "Clear",
+      "description": "clear sky",
+      "icon": "01d"
+    }
+  ],
+  "main": {
+    "temp": 282.55,
+    "feels_like": 277.32,
+    "temp_min": 279.15,
+    "temp_max": 285.15,
+    "pressure": 1023,
+    "humidity": 64
+  },
+}
+  #+end_example
+- Request/Response Model:
+  1. A request is sent
+     * Method Get/Post? What do you want to do?
+     * URL/Path location of the resource?
+     * Headers (API key, content type)
+     * Body (optional data you're sending with POST/PUT)
+  #+begin_example
+  https://api.giphy.com/v1/gifs/search?api_key=YOUR_API_KEY&q=dogs
+  #+end_example
+
+  1. A response is received
+     * Status code (did your request work or not?)
+       - *200 OK*
+       - *201 Created*
+       - *400 Bad Request*
+       - *401 Unauthorized*
+       - *403 Forbidden*
+       - *404 Not Found*
+     * Headers (metadata about response)
+     * Body (actual data, usually in JSON)
+
+** The Call Stack
+- *JavaScript is at its core a synchronous (single threaded) language. However, JavaScript can mimic asynchronous execution in certain situations using the event loop and task queue.*
+  When you call a public API using JavaScript, it can take anywhere from a few milliseconds to several seconds to receive the data. If JavaScript were purely synchronous, your entire
+  site would freeze until the data was returned. That’s unacceptable for real-world applications. Using asynchronous patterns like async/await or .then(), you can allow your code to
+  continue running while waiting for the data and handle it as soon as it’s available.
+
+- The call stack is a LIFO queue and runs the *synchronous* code in LIFO order. Any Asynchronous code is handed off to the browser, which can deal with these pieces in the background...
+  Once the asynch pieces are done, they're passed back to the call stack?
+
+- Browser APIs:
+  In this context, API is actually functionality that your own browser (its under-the-hood C++ code, etc) is exposing to
+  the very simple JavaScript engine...
+
+  #+begin_example js
+  console.log("Start");  // Executed synchronously
+
+  setTimeout(() => {    // Executed asynchronously so that other things can proceed...
+      console.log("Timeout done");
+  }, 1000);
+
+  console.log("End");   // Executed synchronously while the middle line is in the background...
+
+  // Notice how confusing this'd be if you didn't know what was actually happening:
+  // Start
+  // End
+  // Timeout done
+  #+end_example
+
+** Sending API Requests:
+- Option 1: async/await
+  - Relies on a system of *promises:*
+    * Pending: Initial state awaiting a resolution of an asynchronous operation
+    * Fulfilled: Result of a successful asynchronous operation.
+    * Rejected: Result of an unsuccessful asynchronous operation.
+
+  - [[https://www.w3schools.com/jsref/api_fetch.asp][W3S Example]]
+    #+begin_example js
+    // getDogFact() code not shown
+    const button = document.getElementById("fetch-dog-btn");
+
+    button.addEventListener("click", function () {
+        getDogFact();
+    });
+    #+end_example
+
+  - Uses fetch() to request data from the Dog API and then awaits the response.
+  - Converts the response to readable JSON using .json() and we also await here
+    since it requires waiting for the Promise to be resolved.
+  - Gets the dog fact and prints it to the console.
+  - Updates the DOM with the returned dog fact
+
+- Option 2: .then()
+  - A simpler option...
+    * A success callback
+    * An error callback.
+  - Example:
+    #+begin_example js
+    function getDogFact() {
+      fetch("https://dogapi.dog/api/facts")
+      .then(response => response.json())  // Covert the response
+      .then(data => {
+        // Update the DOM with the dog fact
+        const fact = data.facts[0];
+        const output = document.getElementById("fact-output");
+        output.textContent = fact;
+      })
+      .catch(error => {
+        // Message to print if there was an error
+        console.error("Error fetching dog fact:", error);
+      });
+    }
+
+    // Same button code as async/await
+    const button = document.getElementById("fetch-dog-btn");
+
+    button.addEventListener("click", function () {
+      getDogFact();
+    });
+    #+end_example
+
+* Final Project Design
+- Campus Life Super App (Common pain points in college life, unified interface).
+  - Structrued site (multiple pages)
+  - CUstom and library-based CSS
+  - Functional JS
+  - APIs
+  - Publish online (GitHub Pages)
+- Requirements:
+  - >= 3 pages, *semantic HTML*
+  - README:
+    - Project description and purpose
+    - Technologies used
+    - Setup and deployment instructions
+    - Feature list and how to use them
+    - Future improvements or stretch goals
+  - Custom and Bootstrap CSS
+  - >= 2 real-time API integrations
+  - Responsive design, works accross screen sizes
+  - Interactive functionality powered by JS
+  - Accessible and user-friendly interfaces
+  - Professional codebase, versioning, *documentation*
+
+* Week 11 - Fnal Project Wireframe
+- Features your site needs, your goal to solve student pain points on campus...
+  1. Some study tools
+     - [[https://webdesign.tutsplus.com/create-a-pomodoro-timer-with-html-css-and-vanilla-javascript--cms-108069t][Pomodoro Timer]]
+     - Links to helpful pages for various subjects
+       1. Math
+          - [[https://openstax.org/][OpenStax]]
+          - [[https://www.geogebra.org/graphing?lang=en][Online Graphing Calculator]]
+          - [[https://tutorial.math.lamar.edu/Classes/CalcI/CalcI.aspx][Paul's  Online Calculus Notes]]
+          - [[https://www.sagemath.org/][Sage Math]]
+
+       2. English/Literature
+          - [[https://owl.purdue.edu/][Purdue OWL (Writing)]]
+          - [[https://www.zotero.org/][Zotero]]
+          - [[https://standardebooks.org/][Standard Ebooks (Free)]]
+          - [[https://www.gutenberg.org/][Project Gutenberg]]
+
+       3. Computer Science
+          - [[https://en.wikibooks.org/wiki/LaTeX][LaTex Docs]]
+          - [[https://git-scm.com/book/en/v2][Git Documentation]]
+          - [[https://numpy.org/doc/stable/user/index.html#user][Numpy Docs]]
+          - [[https://matplotlib.org/stable/users/index][Matplotlib Docs]]
+          - [[https://cheatography.com/tag/math/][Cheatsheets]]
+          - [[https://fosswire.com/post/2007/08/unixlinux-command-cheat-sheet/][Linux Terminal Cheet Sheet]]
+          - [[https://docs.python.org/3/reference/index.html][Python Quick Reference]]
+
+       4. History
+          - [[https://www.loc.gov/collections/][Library of Congress Digital Collection]]
+          - [[https://www.archives.gov/research][National Archives]]
+          - [[https://sourcebooks.fordham.edu/][Internet History Sourcebooks]]
+          - [[https://www.europeana.eu/][Europeana]]
+          - [[https://archive.org/][Archive.org]]
+          - [[https://www.timemaps.com/][World History Timeline]]
+
+       5. Economics
+          - [[https://www.core-econ.org/][The Economy - Open Textbook]]
+          - [[https://www.khanacademy.org/economics-finance-domain][Kahn Academy Economics]]
+          - [[https://ourworldindata.org/][Our World in Data]]
+          - [[https://fred.stlouisfed.org/][Federal Reserve Economic Data]]
+          - [[https://www.econometrics-with-r.org/][Econometrics with R]]
+
+       6. Data Science
+          - [[https://github.com/matloff/fasteR][FasteR (R lang)]]
+          - [[https://www.youtube.com/user/joshstarmer][StatQuest stats, ML, AI explained visually]]
+          - [[https://datasetsearch.research.google.com/][Google Dataset Search]]
+
+  2. APIs:
+     - [[https://open-meteo.com/en/docs][Open Meteo Forecast]]
+     - [[https://docs.zenquotes.io/zenquotes-documentation/][Zen Quotes]] - Inspirational quote of the day
+       #+begin_src python :results output
+       import requests
+
+       url = "https://zenquotes.io/api/random"
+       response = requests.get(url)
+
+       json_data = response.json()
+
+       quote = json_data[0].get("q")
+       author = json_data[0].get("a")
+
+       print(f"{quote}\n\t--{author}")
+       #+end_src
+
+       #+RESULTS:
+       : Never trust he who trusts everyone.
+       : 	--Carlos Ruiz Zafon
+
+- Wireframe of 3 or more pages for the site
+- "MVP" version of the site?
