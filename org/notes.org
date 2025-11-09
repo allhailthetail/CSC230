@@ -36,40 +36,7 @@
 1. Interface overload
 2. Distractions
 3. Distracting color/typography
-4. Bad search engine optimization SEO
-
-* Submission Conventions
-
-It's important to submit files correctly so the instructor can keep straight each student's work.
-
-#+begin_quote
-Rize Submission Standards:
-
-APA - Times New Roman/Calibri 12pt double-spaced.
-Set link to anyone with link...
-
----
-
-Filename:
-
-! Specific directions may override !
-
-Last name and First Initial
-Unit #
-Name of Assignment
-Date
-
-i.e.
-YoungerM_Unitxx_AssignmentName_mmddyyyy.ext
-
----
-#+end_quote
-
-* Week 3 - Basic HTML
-
-Goal: Create your first webpage using VSCode and Liveserver extension.
-
-** Importance of semantic HTML:
+4. Importance of semantic HTML:
 #+begin_quote
 When implementing HTML, it’s important to structure content using semantic HTML for a few important reasons:
 
